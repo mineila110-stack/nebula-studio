@@ -1,157 +1,159 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <title>Nebula Studio | Portfolio</title>
+<meta charset="UTF-8">
+<title>Nebula Studio | Portfolio</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: radial-gradient(circle at top, #1a1a2e, #0f0f1a);
-      color: white;
-      overflow-x: hidden;
-    }
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0f0f1a;
+    color: white;
+    overflow: hidden;
+  }
 
-    /* лёгкая анимация фона */
-    body::before {
-      content: "";
-      position: fixed;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
-      background-size: 50px 50px;
-      animation: moveBg 20s linear infinite;
-      z-index: 0;
-    }
+  /* canvas фон */
+  canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 0;
+  }
 
-    @keyframes moveBg {
-      from { transform: translate(0,0); }
-      to { transform: translate(-100px,-100px); }
-    }
+  /* верхняя панель */
+  .topbar {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(10px);
+    z-index: 10;
+  }
 
-    /* верхняя панель */
-    .topbar {
-      width: 100%;
-      padding: 20px;
-      display: flex;
-      justify-content: center;
-      position: fixed;
-      top: 0;
-      left: 0;
-      background: rgba(0,0,0,0.4);
-      backdrop-filter: blur(10px);
-      z-index: 10;
-    }
+  .logo {
+    font-size: 22px;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+  }
 
-    .logo {
-      font-size: 22px;
-      font-weight: bold;
-      color: white;
-      text-decoration: none;
-      transition: 0.3s;
-    }
+  .logo:hover {
+    color: #a855f7;
+    transform: scale(1.1);
+  }
 
-    .logo:hover {
-      color: #a855f7;
-      transform: scale(1.1);
-    }
+  .container {
+    position: relative;
+    z-index: 2;
+    padding-top: 110px;
+    text-align: center;
+    animation: fadeIn 1.2s ease;
+  }
 
-    .container {
-      padding-top: 110px;
-      text-align: center;
-      position: relative;
-      z-index: 2;
-      animation: fadeIn 1.2s ease;
-    }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+  h1 { font-size: 40px; }
+  p { opacity: 0.7; }
 
-    h1 {
-      font-size: 40px;
-      margin-bottom: 10px;
-    }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 40px;
+  }
 
-    p {
-      opacity: 0.7;
-    }
+  .card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 20px;
+    border-radius: 15px;
+    transition: 0.3s;
+  }
 
-    /* сетка */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      padding: 40px;
-    }
-
-    /* карточки */
-    .card {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
-      padding: 20px;
-      border-radius: 15px;
-      transition: 0.4s;
-      opacity: 0;
-      transform: translateY(30px);
-      animation: cardIn 0.8s forwards;
-    }
-
-    /* задержка для каждой карточки */
-    .card:nth-child(1) { animation-delay: 0.2s; }
-    .card:nth-child(2) { animation-delay: 0.4s; }
-    .card:nth-child(3) { animation-delay: 0.6s; }
-    .card:nth-child(4) { animation-delay: 0.8s; }
-
-    @keyframes cardIn {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .card:hover {
-      transform: translateY(-10px) scale(1.03);
-      background: rgba(255,255,255,0.1);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    }
-  </style>
+  .card:hover {
+    transform: translateY(-10px) scale(1.03);
+    background: rgba(255,255,255,0.1);
+  }
+</style>
 </head>
 
 <body>
 
-  <div class="topbar">
-    <a class="logo" href="index.html">Nebula Studio</a>
+<canvas id="stars"></canvas>
+
+<div class="topbar">
+  <a class="logo" href="index.html">Nebula Studio</a>
+</div>
+
+<div class="container">
+  <h1>Наше портфолио</h1>
+  <p>Лучшие работы нашей студии</p>
+
+  <div class="grid">
+    <div class="card"><h3>3D Модели</h3><p>Качественные модели и текстуры</p></div>
+    <div class="card"><h3>Монтаж</h3><p>Едиты и видео проекты</p></div>
+    <div class="card"><h3>Датапаки</h3><p>Уникальные механики Minecraft</p></div>
+    <div class="card"><h3>Сайты</h3><p>Современные веб-проекты</p></div>
   </div>
+</div>
 
-  <div class="container">
-    <h1>Наше портфолио</h1>
-    <p>Лучшие работы нашей студии</p>
+<script>
+const canvas = document.getElementById("stars");
+const ctx = canvas.getContext("2d");
 
-    <div class="grid">
-      <div class="card">
-        <h3>3D Модели</h3>
-        <p>Качественные модели и текстуры</p>
-      </div>
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
-      <div class="card">
-        <h3>Монтаж</h3>
-        <p>Едиты и видео проекты</p>
-      </div>
+let stars = [];
 
-      <div class="card">
-        <h3>Датапаки</h3>
-        <p>Уникальные механики Minecraft</p>
-      </div>
+for (let i = 0; i < 120; i++) {
+  stars.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    radius: Math.random() * 2,
+    speed: Math.random() * 0.5 + 0.2
+  });
+}
 
-      <div class="card">
-        <h3>Сайты</h3>
-        <p>Современные веб-проекты</p>
-      </div>
-    </div>
-  </div>
+function drawStars() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  ctx.fillStyle = "white";
+
+  for (let i = 0; i < stars.length; i++) {
+    let s = stars[i];
+
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
+    ctx.fill();
+
+    s.y += s.speed;
+
+    if (s.y > canvas.height) {
+      s.y = 0;
+      s.x = Math.random() * canvas.width;
+    }
+  }
+
+  requestAnimationFrame(drawStars);
+}
+
+drawStars();
+
+window.addEventListener("resize", () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
+</script>
 
 </body>
 </html>
