@@ -1,2 +1,112 @@
-<h1>Наше портфолио</h1>
-<p>Здесь будут наши работы...</p>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Nebula Studio | Portfolio</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: radial-gradient(circle at top, #1a1a2e, #0f0f1a);
+      color: white;
+    }
+
+    /* Верхняя панель */
+    .topbar {
+      width: 100%;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background: rgba(0,0,0,0.4);
+      backdrop-filter: blur(10px);
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+      color: white;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .logo:hover {
+      color: #a855f7;
+      transform: scale(1.05);
+    }
+
+    /* Контент */
+    .container {
+      padding-top: 100px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      opacity: 0.7;
+    }
+
+    /* Карточки портфолио */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 40px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 20px;
+      border-radius: 15px;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      background: rgba(255,255,255,0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Верхняя кнопка-логотип -->
+  <div class="topbar">
+    <a class="logo" href="index.html">Nebula Studio</a>
+  </div>
+
+  <div class="container">
+    <h1>Наше портфолио</h1>
+    <p>Лучшие работы нашей студии</p>
+
+    <div class="grid">
+      <div class="card">
+        <h3>3D Модели</h3>
+        <p>Качественные модели и текстуры</p>
+      </div>
+
+      <div class="card">
+        <h3>Монтаж</h3>
+        <p>Едиты и видео проекты</p>
+      </div>
+
+      <div class="card">
+        <h3>Датапаки</h3>
+        <p>Уникальные механики Minecraft</p>
+      </div>
+
+      <div class="card">
+        <h3>Сайты</h3>
+        <p>Современные веб-проекты</p>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
