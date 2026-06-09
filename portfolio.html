@@ -13,7 +13,7 @@ body {
   overflow-x: hidden;
 }
 
-/* 🌌 фон */
+/* 🌌 звёзды */
 canvas {
   position: fixed;
   top: 0;
@@ -21,7 +21,7 @@ canvas {
   z-index: 0;
 }
 
-/* верх */
+/* 🔝 верх */
 .topbar {
   width: 100%;
   padding: 20px;
@@ -42,7 +42,7 @@ canvas {
   text-decoration: none;
 }
 
-/* контент */
+/* 📦 контент */
 .container {
   position: relative;
   z-index: 2;
@@ -70,10 +70,11 @@ h1 { font-size: 40px; }
 }
 
 .card:hover {
-  transform: scale(1.05);
+  transform: translateY(-10px) scale(1.03);
+  background: rgba(255,255,255,0.1);
 }
 
-/* 📦 снизу открытие */
+/* 📦 раскрытие снизу */
 .expand {
   max-height: 0;
   overflow: hidden;
@@ -91,6 +92,7 @@ h1 { font-size: 40px; }
   padding: 20px;
 }
 
+/* медиа */
 .media img,
 .media video {
   width: 100%;
@@ -114,30 +116,28 @@ h1 { font-size: 40px; }
 
 <div class="grid">
 
-  <div class="card" onclick="openSection('models')">
+  <div class="card" onclick="toggle('models')">
     <h3>3D Модели</h3>
   </div>
 
-  <div class="card" onclick="openSection('editing')">
+  <div class="card" onclick="toggle('editing')">
     <h3>Монтаж</h3>
   </div>
 
 </div>
 
-<!-- 📦 3D МОДЕЛИ -->
+<!-- 📦 3D -->
 <div id="models" class="expand">
   <h2>3D Модели</h2>
-
   <div class="media">
     <img src="https://via.placeholder.com/500x300?text=Model+1">
     <img src="https://via.placeholder.com/500x300?text=Model+2">
   </div>
 </div>
 
-<!-- 🎬 МОНТАЖ -->
+<!-- 🎬 монтаж -->
 <div id="editing" class="expand">
   <h2>Монтаж</h2>
-
   <div class="media">
     <video controls>
       <source src="https://www.w3schools.com/html/mov_bbb.mp4">
@@ -187,14 +187,12 @@ function draw() {
 
 draw();
 
-/* 📦 логика (правильная) */
-function openSection(id) {
-  const sections = document.querySelectorAll(".expand");
+/* 📦 переключение */
+function toggle(id) {
+  const blocks = document.querySelectorAll(".expand");
 
-  sections.forEach(sec => {
-    if (sec.id !== id) {
-      sec.classList.remove("active");
-    }
+  blocks.forEach(b => {
+    if (b.id !== id) b.classList.remove("active");
   });
 
   document.getElementById(id).classList.toggle("active");
