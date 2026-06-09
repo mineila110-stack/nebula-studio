@@ -139,10 +139,25 @@
   <p>Лучшие работы нашей студии</p>
 
   <div class="grid">
+<div class="grid">
 
-    <div class="card" onclick="toggleSection('models')">
-      <h3>3D Модели</h3>
-      <p>Качественные модели и текстуры</p>
+  <div class="card" onclick="toggleSection('models')">
+    <h3>3D Модели</h3>
+  </div>
+
+  <div class="card" onclick="toggleSection('editing')">
+    <h3>Монтаж</h3>
+  </div>
+
+  <div class="card" onclick="toggleSection('datapacks')">
+    <h3>Датапаки</h3>
+  </div>
+
+  <div class="card" onclick="toggleSection('sites')">
+    <h3>Сайты</h3>
+  </div>
+
+</div>
     </div>
 
     <div class="card">
@@ -163,16 +178,27 @@
   </div>
 
   <!-- 📂 раскрытие -->
-  <div id="models" class="expand">
-    <h2>3D Модели</h2>
-    <p>Скоро будут в наличии...</p>
+  <div class="grid">
 
-    <div class="images">
-      <div class="img">🤖 Робот #1 (скоро)</div>
-      <div class="img">🤖 Робот #2 (скоро)</div>
-      <div class="img">🤖 Робот #3 (скоро)</div>
-    </div>
-  </div>
+  <div id="models" class="expand">
+  <h2>3D Модели</h2>
+  <p>Скоро будут роботы...</p>
+</div>
+
+<div id="editing" class="expand">
+  <h2>Монтаж</h2>
+  <p>Скоро будут эдиты...</p>
+</div>
+
+<div id="datapacks" class="expand">
+  <h2>Датапаки</h2>
+  <p>Скоро механики...</p>
+</div>
+
+<div id="sites" class="expand">
+  <h2>Сайты</h2>
+  <p>Скоро веб-проекты...</p>
+</div>
 
 </div>
 
@@ -229,5 +255,18 @@ function toggleSection(id) {
 }
 </script>
 
+function toggleSection(id) {
+  const sections = document.querySelectorAll(".expand");
+
+  sections.forEach(el => {
+    if (el.id !== id) {
+      el.classList.remove("active");
+    }
+  });
+
+  const target = document.getElementById(id);
+  target.classList.toggle("active");
+}
+  
 </body>
 </html>
