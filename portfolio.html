@@ -5,145 +5,177 @@
 <title>Nebula Studio | Portfolio</title>
 
 <style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #0f0f1a;
-  color: white;
-  overflow-x: hidden;
-}
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0f0f1a;
+    color: white;
+    overflow-x: hidden;
+  }
 
-/* 🌌 звёзды */
-canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 0;
-}
+  /* 🌌 фон звёзды */
+  canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 0;
+  }
 
-/* 🔝 верх */
-.topbar {
-  width: 100%;
-  padding: 20px;
-  display: flex;
-  justify-content: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background: rgba(0,0,0,0.4);
-  backdrop-filter: blur(10px);
-  z-index: 10;
-}
+  /* 🔝 верхняя панель */
+  .topbar {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(10px);
+    z-index: 10;
+  }
 
-.logo {
-  font-size: 22px;
-  font-weight: bold;
-  color: white;
-  text-decoration: none;
-}
+  .logo {
+    font-size: 22px;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+  }
 
-/* 📦 контент */
-.container {
-  position: relative;
-  z-index: 2;
-  padding-top: 110px;
-  text-align: center;
-}
+  .logo:hover {
+    color: #a855f7;
+    transform: scale(1.1);
+  }
 
-h1 { font-size: 40px; }
+  /* 📦 контент */
+  .container {
+    position: relative;
+    z-index: 2;
+    padding-top: 110px;
+    text-align: center;
+  }
 
-/* карточки */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  padding: 40px;
-}
+  h1 { font-size: 40px; }
+  p { opacity: 0.7; }
 
-.card {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
-  padding: 20px;
-  border-radius: 15px;
-  cursor: pointer;
-  transition: 0.3s;
-}
+  /* 🧱 карточки */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 40px;
+  }
 
-.card:hover {
-  transform: translateY(-10px) scale(1.03);
-  background: rgba(255,255,255,0.1);
-}
+  .card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 20px;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
 
-/* 📦 раскрытие снизу */
-.expand {
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0;
-  transition: 0.5s ease;
-  margin: 0 40px;
-  background: rgba(255,255,255,0.05);
-  border-radius: 15px;
-  padding: 0 20px;
-}
+  .card:hover {
+    transform: translateY(-10px) scale(1.03);
+    background: rgba(255,255,255,0.1);
+  }
 
-.expand.active {
-  max-height: 600px;
-  opacity: 1;
-  padding: 20px;
-}
+  /* 📂 блоки */
+  .expand {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: all 0.6s ease;
+    background: rgba(255,255,255,0.05);
+    margin: 0 40px;
+    border-radius: 15px;
+  }
 
-/* медиа */
-.media img,
-.media video {
-  width: 100%;
-  border-radius: 10px;
-  margin-top: 10px;
-}
+  .expand.active {
+    max-height: 500px;
+    opacity: 1;
+    padding: 20px;
+    margin-top: 20px;
+  }
+
+  .images {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+
+  .img {
+    flex: 1;
+    min-width: 150px;
+    padding: 20px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.08);
+  }
 </style>
 </head>
 
 <body>
 
+<!-- 🌌 звёзды -->
 <canvas id="stars"></canvas>
 
+<!-- 🔝 меню -->
 <div class="topbar">
   <a class="logo" href="index.html">Nebula Studio</a>
 </div>
 
+<!-- 📦 контент -->
 <div class="container">
 
-<h1>Наше портфолио</h1>
+  <h1>Наше портфолио</h1>
+  <p>Лучшие работы нашей студии</p>
 
-<div class="grid">
+  <div class="grid">
 
-  <div class="card" onclick="toggle('models')">
-    <h3>3D Модели</h3>
+    <div class="card" onclick="toggleSection('models')">
+      <h3>3D Модели</h3>
+    </div>
+
+    <div class="card" onclick="toggleSection('editing')">
+      <h3>Монтаж</h3>
+    </div>
+
+    <div class="card" onclick="toggleSection('datapacks')">
+      <h3>Датапаки</h3>
+    </div>
+
+    <div class="card" onclick="toggleSection('sites')">
+      <h3>Сайты</h3>
+    </div>
+
   </div>
 
-  <div class="card" onclick="toggle('editing')">
-    <h3>Монтаж</h3>
+  <!-- 📂 блоки -->
+  <div id="models" class="expand">
+    <h2>3D Модели</h2>
+    <p>Скоро будут роботы...</p>
+    <div class="images">
+      <div class="img">🤖 Робот #1</div>
+      <div class="img">🤖 Робот #2</div>
+    </div>
   </div>
 
-</div>
-
-<!-- 📦 3D -->
-<div id="models" class="expand">
-  <h2>3D Модели</h2>
-  <div class="media">
-    <img src="https://via.placeholder.com/500x300?text=Model+1">
-    <img src="https://via.placeholder.com/500x300?text=Model+2">
+  <div id="editing" class="expand">
+    <h2>Монтаж</h2>
+    <p>Скоро эдиты...</p>
   </div>
-</div>
 
-<!-- 🎬 монтаж -->
-<div id="editing" class="expand">
-  <h2>Монтаж</h2>
-  <div class="media">
-    <video controls>
-      <source src="https://www.w3schools.com/html/mov_bbb.mp4">
-    </video>
+  <div id="datapacks" class="expand">
+    <h2>Датапаки</h2>
+    <p>Скоро механики...</p>
   </div>
-</div>
+
+  <div id="sites" class="expand">
+    <h2>Сайты</h2>
+    <p>Скоро веб-проекты...</p>
+  </div>
 
 </div>
 
@@ -176,6 +208,7 @@ function draw() {
     ctx.fill();
 
     s.y += s.speed;
+
     if (s.y > canvas.height) {
       s.y = 0;
       s.x = Math.random() * canvas.width;
@@ -187,12 +220,19 @@ function draw() {
 
 draw();
 
-/* 📦 переключение */
-function toggle(id) {
-  const blocks = document.querySelectorAll(".expand");
+window.addEventListener("resize", () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
 
-  blocks.forEach(b => {
-    if (b.id !== id) b.classList.remove("active");
+/* 🧠 переключение блоков */
+function toggleSection(id) {
+  const sections = document.querySelectorAll(".expand");
+
+  sections.forEach(el => {
+    if (el.id !== id) {
+      el.classList.remove("active");
+    }
   });
 
   document.getElementById(id).classList.toggle("active");
