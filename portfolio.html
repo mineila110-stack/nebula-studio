@@ -2,16 +2,35 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>✦Nebula Studio | Portfolio</title>
+  <title>Nebula Studio | Portfolio</title>
+
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
       background: radial-gradient(circle at top, #1a1a2e, #0f0f1a);
       color: white;
+      overflow-x: hidden;
     }
 
-    /* Верхняя панель */
+    /* лёгкая анимация фона */
+    body::before {
+      content: "";
+      position: fixed;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
+      background-size: 50px 50px;
+      animation: moveBg 20s linear infinite;
+      z-index: 0;
+    }
+
+    @keyframes moveBg {
+      from { transform: translate(0,0); }
+      to { transform: translate(-100px,-100px); }
+    }
+
+    /* верхняя панель */
     .topbar {
       width: 100%;
       padding: 20px;
@@ -22,6 +41,7 @@
       left: 0;
       background: rgba(0,0,0,0.4);
       backdrop-filter: blur(10px);
+      z-index: 10;
     }
 
     .logo {
@@ -34,13 +54,20 @@
 
     .logo:hover {
       color: #a855f7;
-      transform: scale(1.05);
+      transform: scale(1.1);
     }
 
-    /* Контент */
     .container {
-      padding-top: 100px;
+      padding-top: 110px;
       text-align: center;
+      position: relative;
+      z-index: 2;
+      animation: fadeIn 1.2s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     h1 {
@@ -52,7 +79,7 @@
       opacity: 0.7;
     }
 
-    /* Карточки портфолио */
+    /* сетка */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -60,23 +87,41 @@
       padding: 40px;
     }
 
+    /* карточки */
     .card {
       background: rgba(255,255,255,0.05);
       border: 1px solid rgba(255,255,255,0.1);
       padding: 20px;
       border-radius: 15px;
-      transition: 0.3s;
+      transition: 0.4s;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: cardIn 0.8s forwards;
+    }
+
+    /* задержка для каждой карточки */
+    .card:nth-child(1) { animation-delay: 0.2s; }
+    .card:nth-child(2) { animation-delay: 0.4s; }
+    .card:nth-child(3) { animation-delay: 0.6s; }
+    .card:nth-child(4) { animation-delay: 0.8s; }
+
+    @keyframes cardIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-10px) scale(1.03);
       background: rgba(255,255,255,0.1);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
   </style>
 </head>
+
 <body>
 
-  <!-- Верхняя кнопка-логотип -->
   <div class="topbar">
     <a class="logo" href="index.html">Nebula Studio</a>
   </div>
