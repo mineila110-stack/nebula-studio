@@ -355,26 +355,5 @@ themeBtn.onclick = () => {
 };
 </script>
 
-<script>
-function setTheme(theme) {
-  localStorage.setItem("theme", theme);
-  applyTheme();
-}
-
-function applyTheme() {
-  const theme = localStorage.getItem("theme");
-
-  if (theme === "light") {
-    document.body.style.background = "#ffffff";
-    document.body.style.color = "#000000";
-  } else {
-    document.body.style.background = "#0f0f1a";
-    document.body.style.color = "#ffffff";
-  }
-}
-
-window.onload = applyTheme;
-</script>
-  
 </body>
 </html>
