@@ -325,5 +325,26 @@ themeBtn.textContent='🌙';
 };
 </script>
 
+  <script>
+const themeBtn = document.getElementById("themeBtn");
+
+if(localStorage.getItem("theme") === "light"){
+    document.body.classList.add("light");
+    themeBtn.textContent = "☀️";
+}
+
+themeBtn.onclick = () => {
+    document.body.classList.toggle("light");
+
+    if(document.body.classList.contains("light")){
+        themeBtn.textContent = "☀️";
+        localStorage.setItem("theme","light");
+    }else{
+        themeBtn.textContent = "🌙";
+        localStorage.setItem("theme","dark");
+    }
+};
+</script>
+
 </body>
 </html>
