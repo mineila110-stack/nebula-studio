@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<title>✦Nebula Studio | Portfolio</title>
+<title>Nebula Studio | Portfolio</title>
 
 <style>
   body {
@@ -54,12 +54,6 @@
     z-index: 2;
     padding-top: 110px;
     text-align: center;
-    animation: fadeIn 1s ease;
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
   }
 
   h1 { font-size: 40px; }
@@ -78,8 +72,8 @@
     border: 1px solid rgba(255,255,255,0.1);
     padding: 20px;
     border-radius: 15px;
-    transition: 0.3s;
     cursor: pointer;
+    transition: 0.3s;
   }
 
   .card:hover {
@@ -87,7 +81,7 @@
     background: rgba(255,255,255,0.1);
   }
 
-  /* 📂 раскрывающийся блок */
+  /* 📂 блоки */
   .expand {
     max-height: 0;
     overflow: hidden;
@@ -108,8 +102,8 @@
   .images {
     display: flex;
     gap: 10px;
-    margin-top: 10px;
     flex-wrap: wrap;
+    margin-top: 10px;
   }
 
   .img {
@@ -139,66 +133,49 @@
   <p>Лучшие работы нашей студии</p>
 
   <div class="grid">
-<div class="grid">
 
-  <div class="card" onclick="toggleSection('models')">
-    <h3>3D Модели</h3>
-  </div>
-
-  <div class="card" onclick="toggleSection('editing')">
-    <h3>Монтаж</h3>
-  </div>
-
-  <div class="card" onclick="toggleSection('datapacks')">
-    <h3>Датапаки</h3>
-  </div>
-
-  <div class="card" onclick="toggleSection('sites')">
-    <h3>Сайты</h3>
-  </div>
-
-</div>
+    <div class="card" onclick="toggleSection('models')">
+      <h3>3D Модели</h3>
     </div>
 
-    <div class="card">
+    <div class="card" onclick="toggleSection('editing')">
       <h3>Монтаж</h3>
-      <p>Едиты и видео проекты</p>
     </div>
 
-    <div class="card">
+    <div class="card" onclick="toggleSection('datapacks')">
       <h3>Датапаки</h3>
-      <p>Уникальные механики Minecraft</p>
     </div>
 
-    <div class="card">
+    <div class="card" onclick="toggleSection('sites')">
       <h3>Сайты</h3>
-      <p>Современные веб-проекты</p>
     </div>
 
   </div>
 
-  <!-- 📂 раскрытие -->
-  <div class="grid">
-
+  <!-- 📂 блоки -->
   <div id="models" class="expand">
-  <h2>3D Модели</h2>
-  <p>Скоро будут роботы...</p>
-</div>
+    <h2>3D Модели</h2>
+    <p>Скоро будут роботы...</p>
+    <div class="images">
+      <div class="img">🤖 Робот #1</div>
+      <div class="img">🤖 Робот #2</div>
+    </div>
+  </div>
 
-<div id="editing" class="expand">
-  <h2>Монтаж</h2>
-  <p>Скоро будут эдиты...</p>
-</div>
+  <div id="editing" class="expand">
+    <h2>Монтаж</h2>
+    <p>Скоро эдиты...</p>
+  </div>
 
-<div id="datapacks" class="expand">
-  <h2>Датапаки</h2>
-  <p>Скоро механики...</p>
-</div>
+  <div id="datapacks" class="expand">
+    <h2>Датапаки</h2>
+    <p>Скоро механики...</p>
+  </div>
 
-<div id="sites" class="expand">
-  <h2>Сайты</h2>
-  <p>Скоро веб-проекты...</p>
-</div>
+  <div id="sites" class="expand">
+    <h2>Сайты</h2>
+    <p>Скоро веб-проекты...</p>
+  </div>
 
 </div>
 
@@ -248,13 +225,7 @@ window.addEventListener("resize", () => {
   canvas.height = window.innerHeight;
 });
 
-/* 📂 раскрытие блока */
-function toggleSection(id) {
-  const el = document.getElementById(id);
-  el.classList.toggle("active");
-}
-</script>
-
+/* 🧠 переключение блоков */
 function toggleSection(id) {
   const sections = document.querySelectorAll(".expand");
 
@@ -264,9 +235,9 @@ function toggleSection(id) {
     }
   });
 
-  const target = document.getElementById(id);
-  target.classList.toggle("active");
+  document.getElementById(id).classList.toggle("active");
 }
-  
+</script>
+
 </body>
 </html>
